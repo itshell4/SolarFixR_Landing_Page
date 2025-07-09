@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Upload as UploadIcon, Camera, Thermometer, Plane, Zap, AlertTriangle, CheckCircle, BarChart3 } from 'lucide-react';
+import { Upload as UploadIcon, Camera, Thermometer, Drone, Zap, AlertTriangle, CheckCircle } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 
 const Upload = () => {
@@ -130,7 +131,7 @@ const Upload = () => {
                     </SelectItem>
                     <SelectItem value="drone">
                       <div className="flex items-center space-x-2">
-                        <Plane className="h-4 w-4" />
+                        <Drone className="h-4 w-4" />
                         <span>Drone Sequence</span>
                       </div>
                     </SelectItem>
