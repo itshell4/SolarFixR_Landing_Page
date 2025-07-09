@@ -1,8 +1,8 @@
 
-import HackathonLanding from '../components/HackathonLanding';
+import HomePage from '../components/HomePage';
 
 const Index = () => {
-  return <HackathonLanding />;
+  return <HomePage />;
 };
 
 export default Index;
