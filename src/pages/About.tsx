@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -73,7 +72,6 @@ const About = () => {
             </a>
           </Button>
         </div>
-        </div>
 
         {/* Technology Features */}
         <div className="mb-16">
@@ -118,7 +116,6 @@ const About = () => {
                         {tech.category}
                       </Badge>
                     </div>
-                  </div>
                   </div>
                 ))}
               </div>
@@ -170,7 +167,6 @@ const About = () => {
                       <p className="text-cyan-400 font-medium text-sm">{member.role}</p>
                       <p className="text-gray-300 text-sm">{member.expertise}</p>
                     </div>
-                  </div>
                   </div>
                 ))}
               </div>
