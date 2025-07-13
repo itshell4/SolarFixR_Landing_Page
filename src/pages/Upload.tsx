@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Upload as UploadIcon, Camera, Thermometer, Plane, Zap, AlertTriangle, CheckCircle, BarChart3 } from 'lucide-react';
 import ModernNavigation from '@/components/ModernNavigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import { motion } from 'framer-motion';
 
 const Upload = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -62,23 +61,14 @@ const Upload = () => {
       <ModernNavigation />
       
       <div className="max-w-4xl mx-auto px-6 py-8 pt-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
+        <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Upload Solar Panel Images</h1>
           <p className="text-xl text-gray-300">Get instant AI-powered fault detection and health analysis</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Upload Section */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div>
             <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 text-white">
@@ -172,14 +162,10 @@ const Upload = () => {
               </Button>
             </CardContent>
           </Card>
-          </motion.div>
+          </div>
 
           {/* Results Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
+          <div>
             <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 text-white">
@@ -244,7 +230,7 @@ const Upload = () => {
               )}
             </CardContent>
           </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

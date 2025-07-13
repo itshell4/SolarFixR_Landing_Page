@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { BarChart3, MapPin, Calendar, Download, Filter, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react';
 import ModernNavigation from '@/components/ModernNavigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import { motion } from 'framer-motion';
 
 const Dashboard = () => {
   const [filterType, setFilterType] = useState('all');
@@ -63,23 +62,13 @@ const Dashboard = () => {
       <ModernNavigation />
       
       <div className="max-w-7xl mx-auto px-6 py-8 pt-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Solar Panel Dashboard</h1>
           <p className="text-xl text-gray-300">Monitor your solar farm's health and performance</p>
         </div>
 
         {/* Stats Overview */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -128,14 +117,10 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
-        </motion.div>
+        </div>
 
         {/* Filters and Controls */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
+        <div>
           <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800 mb-8">
           <CardHeader>
             <CardTitle className="flex items-center justify-between text-white">
@@ -184,14 +169,10 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
-        </motion.div>
+        </div>
 
         {/* Panel Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
+        <div>
           <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2 text-white">
@@ -202,11 +183,7 @@ const Dashboard = () => {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredPanels.map((panel) => (
-                <motion.div
-                  key={panel.id}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <div key={panel.id} className="hover:scale-102 hover:-translate-y-1 transition-transform duration-200">
                   <Card className="border-2 border-gray-700 hover:border-cyan-500/50 transition-colors bg-gray-800/50">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
@@ -254,12 +231,12 @@ const Dashboard = () => {
                     </div>
                   </CardContent>
                 </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
           </CardContent>
         </Card>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

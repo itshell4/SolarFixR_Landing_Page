@@ -1,4 +1,3 @@
-
 import ModernHomePage from '../components/ModernHomePage';
 
 const Index = () => {
