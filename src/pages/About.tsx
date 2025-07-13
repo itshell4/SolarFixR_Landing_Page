@@ -130,15 +130,15 @@ const About = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { step: 1, title: "Data Collection", desc: "Drones capture high-resolution RGB and thermal images of solar panels across your farm", color: "blue" },
-              { step: 2, title: "AI Analysis", desc: "YOLOv8 computer vision model analyzes images to detect faults and calculate health scores", color: "green" },
-              { step: 3, title: "Actionable Insights", desc: "Receive real-time alerts, maintenance recommendations, and performance analytics", color: "purple" }
+              { step: 1, title: "Data Collection", desc: "Drones capture high-resolution RGB and thermal images of solar panels across your farm", bgClass: "bg-blue-500/20", borderClass: "border-blue-500/30", textClass: "text-blue-400" },
+              { step: 2, title: "AI Analysis", desc: "YOLOv8 computer vision model analyzes images to detect faults and calculate health scores", bgClass: "bg-green-500/20", borderClass: "border-green-500/30", textClass: "text-green-400" },
+              { step: 3, title: "Actionable Insights", desc: "Receive real-time alerts, maintenance recommendations, and performance analytics", bgClass: "bg-purple-500/20", borderClass: "border-purple-500/30", textClass: "text-purple-400" }
             ].map((item, index) => (
               <div key={index} className="hover:scale-105 transition-transform duration-200">
                 <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800 text-center h-full">
               <CardContent className="p-6">
-                <div className={`bg-${item.color}-500/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border border-${item.color}-500/30`}>
-                  <span className={`text-2xl font-bold text-${item.color}-400`}>{item.step}</span>
+                <div className={`${item.bgClass} ${item.borderClass} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border`}>
+                  <span className={`text-2xl font-bold ${item.textClass}`}>{item.step}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">{item.title}</h3>
                 <p className="text-gray-300">{item.desc}</p>
