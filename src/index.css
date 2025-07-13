@@ -113,4 +113,33 @@ All colors MUST be HSL.
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(-20px) translateX(-5px); }
+    75% { transform: translateY(-10px) translateX(5px); }
+  }
+
+  @keyframes flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes flow-reverse {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .animate-flow {
+    animation: flow 20s ease-in-out infinite;
+  }
+
+  .animate-flow-reverse {
+    animation: flow-reverse 25s ease-in-out infinite;
+  }
 }

@@ -5,7 +5,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { BarChart3, MapPin, Calendar, Download, Filter, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react';
-import Navigation from '@/components/Navigation';
+import ModernNavigation from '@/components/ModernNavigation';
+import AnimatedBackground from '@/components/AnimatedBackground';
+import { motion } from 'framer-motion';
 
 const Dashboard = () => {
   const [filterType, setFilterType] = useState('all');
@@ -56,34 +58,45 @@ const Dashboard = () => {
   const avgHealthScore = Math.round(panelData.reduce((sum, p) => sum + p.healthScore, 0) / totalPanels);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <Navigation />
+    <div className="min-h-screen text-white relative">
+      <AnimatedBackground />
+      <ModernNavigation />
       
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Solar Panel Dashboard</h1>
-          <p className="text-xl text-gray-600">Monitor your solar farm's health and performance</p>
+      <div className="max-w-7xl mx-auto px-6 py-8 pt-32">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <h1 className="text-4xl font-bold text-white mb-4">Solar Panel Dashboard</h1>
+          <p className="text-xl text-gray-300">Monitor your solar farm's health and performance</p>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-white/80 backdrop-blur-sm">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+        >
+          <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Total Panels</p>
-                  <p className="text-3xl font-bold text-gray-800">{totalPanels}</p>
+                  <p className="text-sm text-gray-400">Total Panels</p>
+                  <p className="text-3xl font-bold text-white">{totalPanels}</p>
                 </div>
-                <BarChart3 className="h-8 w-8 text-blue-600" />
+                <BarChart3 className="h-8 w-8 text-cyan-400" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm">
+          <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Avg Health Score</p>
+                  <p className="text-sm text-gray-400">Avg Health Score</p>
                   <p className={`text-3xl font-bold ${getHealthScoreColor(avgHealthScore)}`}>{avgHealthScore}%</p>
                 </div>
                 <TrendingUp className="h-8 w-8 text-green-600" />
@@ -91,11 +104,11 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm">
+          <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Healthy Panels</p>
+                  <p className="text-sm text-gray-400">Healthy Panels</p>
                   <p className="text-3xl font-bold text-green-600">{healthyPanels}</p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
@@ -103,11 +116,11 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm">
+          <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">Need Attention</p>
+                  <p className="text-sm text-gray-400">Need Attention</p>
                   <p className="text-3xl font-bold text-red-600">{warningPanels + criticalPanels}</p>
                 </div>
                 <AlertTriangle className="h-8 w-8 text-red-600" />
@@ -115,16 +128,22 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+        </motion.div>
 
         {/* Filters and Controls */}
-        <Card className="bg-white/80 backdrop-blur-sm mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800 mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center justify-between">
+            <CardTitle className="flex items-center justify-between text-white">
               <span className="flex items-center space-x-2">
                 <Filter className="h-5 w-5" />
                 <span>Filters & Controls</span>
               </span>
-              <Button variant="outline" className="flex items-center space-x-2">
+              <Button variant="outline" className="flex items-center space-x-2 border-cyan-400 text-cyan-300 hover:bg-cyan-500/20">
                 <Download className="h-4 w-4" />
                 <span>Export Report</span>
               </Button>
@@ -133,7 +152,7 @@ const Dashboard = () => {
           <CardContent>
             <div className="flex flex-wrap gap-4">
               <div className="flex-1 min-w-48">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Fault Type</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Fault Type</label>
                 <Select value={filterType} onValueChange={setFilterType}>
                   <SelectTrigger>
                     <SelectValue />
@@ -149,7 +168,7 @@ const Dashboard = () => {
               </div>
 
               <div className="flex-1 min-w-48">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Urgency</label>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Urgency</label>
                 <Select value={filterUrgency} onValueChange={setFilterUrgency}>
                   <SelectTrigger>
                     <SelectValue />
@@ -165,11 +184,17 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+        </motion.div>
 
         {/* Panel Grid */}
-        <Card className="bg-white/80 backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
+            <CardTitle className="flex items-center space-x-2 text-white">
               <MapPin className="h-5 w-5" />
               <span>Panel Status Grid</span>
             </CardTitle>
@@ -177,10 +202,15 @@ const Dashboard = () => {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredPanels.map((panel) => (
-                <Card key={panel.id} className="border-2 hover:border-blue-300 transition-colors">
+                <motion.div
+                  key={panel.id}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Card className="border-2 border-gray-700 hover:border-cyan-500/50 transition-colors bg-gray-800/50">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-semibold text-gray-800">{panel.id}</h3>
+                      <h3 className="font-semibold text-white">{panel.id}</h3>
                       <Badge className={getStatusColor(panel.status)}>
                         {panel.status}
                       </Badge>
@@ -188,30 +218,30 @@ const Dashboard = () => {
                     
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Location:</span>
+                        <span className="text-sm text-gray-400">Location:</span>
                         <span className="text-sm font-medium">{panel.location}</span>
                       </div>
                       
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Health Score:</span>
+                        <span className="text-sm text-gray-400">Health Score:</span>
                         <span className={`text-sm font-bold ${getHealthScoreColor(panel.healthScore)}`}>
                           {panel.healthScore}%
                         </span>
                       </div>
                       
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Last Inspection:</span>
+                        <span className="text-sm text-gray-400">Last Inspection:</span>
                         <span className="text-sm">{panel.lastInspection}</span>
                       </div>
                       
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Next Maintenance:</span>
+                        <span className="text-sm text-gray-400">Next Maintenance:</span>
                         <span className="text-sm">{panel.nextMaintenance}</span>
                       </div>
                       
                       {panel.faults.length > 0 && (
                         <div className="pt-2">
-                          <span className="text-sm text-gray-600">Faults:</span>
+                          <span className="text-sm text-gray-400">Faults:</span>
                           <div className="flex flex-wrap gap-1 mt-1">
                             {panel.faults.map((fault, index) => (
                               <Badge key={index} variant="outline" className="text-xs">
@@ -224,10 +254,12 @@ const Dashboard = () => {
                     </div>
                   </CardContent>
                 </Card>
+                </motion.div>
               ))}
             </div>
           </CardContent>
         </Card>
+        </motion.div>
       </div>
     </div>
   );

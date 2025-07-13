@@ -4,7 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Upload as UploadIcon, Camera, Thermometer, Plane, Zap, AlertTriangle, CheckCircle, BarChart3 } from 'lucide-react';
-import Navigation from '@/components/Navigation';
+import ModernNavigation from '@/components/ModernNavigation';
+import AnimatedBackground from '@/components/AnimatedBackground';
+import { motion } from 'framer-motion';
 
 const Upload = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -55,20 +57,31 @@ const Upload = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <Navigation />
+    <div className="min-h-screen text-white relative">
+      <AnimatedBackground />
+      <ModernNavigation />
       
-      <div className="max-w-4xl mx-auto px-6 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Upload Solar Panel Images</h1>
-          <p className="text-xl text-gray-600">Get instant AI-powered fault detection and health analysis</p>
+      <div className="max-w-4xl mx-auto px-6 py-8 pt-32">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-8"
+        >
+          <h1 className="text-4xl font-bold text-white mb-4">Upload Solar Panel Images</h1>
+          <p className="text-xl text-gray-300">Get instant AI-powered fault detection and health analysis</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Upload Section */}
-          <Card className="bg-white/80 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
+              <CardTitle className="flex items-center space-x-2 text-white">
                 <UploadIcon className="h-5 w-5" />
                 <span>Image Upload</span>
               </CardTitle>
@@ -78,13 +91,13 @@ const Upload = () => {
               <div
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                className="border-2 border-dashed border-blue-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer"
+                className="border-2 border-dashed border-cyan-500/50 rounded-lg p-8 text-center hover:border-cyan-400 transition-colors cursor-pointer bg-gray-800/30"
               >
-                <Camera className="h-12 w-12 mx-auto mb-4 text-blue-500" />
-                <p className="text-lg font-medium text-gray-700 mb-2">
+                <Camera className="h-12 w-12 mx-auto mb-4 text-cyan-400" />
+                <p className="text-lg font-medium text-white mb-2">
                   Drag & drop your image here
                 </p>
-                <p className="text-gray-500 mb-4">or</p>
+                <p className="text-gray-400 mb-4">or</p>
                 <input
                   type="file"
                   accept="image/*"
@@ -92,7 +105,7 @@ const Upload = () => {
                   className="hidden"
                   id="file-upload"
                 />
-                <Button asChild variant="outline">
+                <Button asChild variant="outline" className="border-cyan-400 text-cyan-300 hover:bg-cyan-500/20">
                   <label htmlFor="file-upload" className="cursor-pointer">
                     Browse Files
                   </label>
@@ -100,15 +113,15 @@ const Upload = () => {
               </div>
 
               {selectedFile && (
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <p className="font-medium text-blue-800">Selected: {selectedFile.name}</p>
-                  <p className="text-sm text-blue-600">Size: {(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                <div className="p-4 bg-cyan-500/20 rounded-lg border border-cyan-500/30">
+                  <p className="font-medium text-cyan-300">Selected: {selectedFile.name}</p>
+                  <p className="text-sm text-cyan-400">Size: {(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
                 </div>
               )}
 
               {/* Image Type Selection */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   Select Image Type
                 </label>
                 <Select value={imageType} onValueChange={setImageType}>
@@ -142,7 +155,7 @@ const Upload = () => {
               <Button
                 onClick={handleAnalyze}
                 disabled={!selectedFile || !imageType || isAnalyzing}
-                className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700"
                 size="lg"
               >
                 {isAnalyzing ? (
@@ -159,11 +172,17 @@ const Upload = () => {
               </Button>
             </CardContent>
           </Card>
+          </motion.div>
 
           {/* Results Section */}
-          <Card className="bg-white/80 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800">
             <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
+              <CardTitle className="flex items-center space-x-2 text-white">
                 <BarChart3 className="h-5 w-5" />
                 <span>Analysis Results</span>
               </CardTitle>
@@ -172,7 +191,7 @@ const Upload = () => {
               {!analysisResult ? (
                 <div className="text-center py-8">
                   <Camera className="h-16 w-16 mx-auto mb-4 text-gray-300" />
-                  <p className="text-gray-500">Upload an image and select type to see analysis results</p>
+                  <p className="text-gray-400">Upload an image and select type to see analysis results</p>
                 </div>
               ) : (
                 <div className="space-y-6">
@@ -185,7 +204,7 @@ const Upload = () => {
 
                   {/* Faults Detected */}
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2 flex items-center">
+                    <h3 className="font-medium text-gray-300 mb-2 flex items-center">
                       <AlertTriangle className="h-4 w-4 mr-2 text-orange-500" />
                       Faults Detected
                     </h3>
@@ -200,7 +219,7 @@ const Upload = () => {
 
                   {/* Confidence */}
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2 flex items-center">
+                    <h3 className="font-medium text-gray-300 mb-2 flex items-center">
                       <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
                       Confidence
                     </h3>
@@ -211,11 +230,11 @@ const Upload = () => {
 
                   {/* Recommendations */}
                   <div>
-                    <h3 className="font-medium text-gray-700 mb-2">Recommendations</h3>
+                    <h3 className="font-medium text-gray-300 mb-2">Recommendations</h3>
                     <ul className="space-y-1">
                       {analysisResult.recommendations.map((rec: string, index: number) => (
-                        <li key={index} className="text-sm text-gray-600 flex items-start">
-                          <span className="text-blue-500 mr-2">•</span>
+                        <li key={index} className="text-sm text-gray-400 flex items-start">
+                          <span className="text-cyan-400 mr-2">•</span>
                           {rec}
                         </li>
                       ))}
@@ -225,6 +244,7 @@ const Upload = () => {
               )}
             </CardContent>
           </Card>
+          </motion.div>
         </div>
       </div>
     </div>

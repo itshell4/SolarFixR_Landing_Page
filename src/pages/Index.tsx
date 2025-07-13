@@ -1,8 +1,8 @@
 
-import HomePage from '../components/HomePage';
+import ModernHomePage from '../components/ModernHomePage';
 
 const Index = () => {
-  return <HomePage />;
+  return <ModernHomePage />;
 };
 
 export default Index;
